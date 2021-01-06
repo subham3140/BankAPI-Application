@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+# new
+import django_heroku
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -26,7 +30,7 @@ SECRET_KEY = 'pu%m%e^$1eu$ezuhaq48kc^&s*8eay$ws2bx1wi!!v&yves7mm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,17 +88,22 @@ WSGI_APPLICATION = 'BankProject.wsgi.application'
 # }
 # PostgreSQL databases
 # ////////////////////////////////////
-DATABASES={
-   'default':{
-      'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'postgres',
-      'USER':'postgres',
-      'PASSWORD':os.environ.get('My_PASSWORD'),
-      'HOST':'localhost',
-      'PORT':'5432',
-   }
+# DATABASES={
+#    'default':{
+#       'ENGINE':'django.db.backends.postgresql_psycopg2',
+#       'NAME':'postgres',
+#       'USER':'postgres',
+#       'PASSWORD':os.environ.get('My_PASSWORD'),
+#       'HOST':'localhost',
+#       'PORT':'5432',
+#    }
+# }
+
+# new
+DATABASES = {
+    'default' : dj_database_url.config()
 }
-# ///////////////////////////////////
+# # ///////////////////////////////////
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -134,6 +143,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-     os.path.join(BASE_DIR, 'static'),
-   ]
+# new
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+django_heroku.settings(locals())

@@ -1,0 +1,33 @@
+{% include 'index.html' %}
+{% block content %}
+<div class="jumbotron">
+  <h6>Details of Bank  :: {{ detail.bank_name }}</h6>
+  <table class="center">
+    <tr class="big-info">
+      <th>ID</th>
+      <th>IFSC</th>
+      <th>BANK ID</th>
+      <th>BRANCH</th>
+      <th>ADDRESS</th>
+      <th>CITY</th>
+      <th>DISTRICT</th>
+      <th>STATE</th>
+      <th>BANK NAME</th>
+    </tr>
+    <tbody id="detail">
+      <tr>
+        <td>{{ detail.id }}</td>
+        <td>{{ detail.ifsc }}</td>
+        <td>{{ detail.bank_id }}</td>
+        <td>{{ detail.branch }}</td>
+        <td>{{ detail.branch }}</td>
+        <td>{{ detail.city }}</td>
+        <td>{{ detail.district }}</td>
+        <td>{{ detail.state }}</td>
+        <td>{{ detail.bank_name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% include 'index.html' %}
+{% block content %}
+  <div class="pagination">
+    <a class="btn btn-info" href="{% url 'BankApp:banktable' %}?page={{ previous }}"> previous</a>
+    <a class="btn btn-info next" href="{% url 'BankApp:banktable' %}?page={{ next }}">next</a>
+  </div>
+  <div class="bar">
+    <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          City
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+           {% for i in list %}
+            <a class="dropdown-item" href="{% url 'BankApp:detail' pk=i.id %}">{{ i.city }}</a>
+           {% endfor %}
+        </div>
+    </div>
+    <h6>To see the details of particular bank, please click on the respective row or click on City and choose the particular one</h6>
+    <div class="bar1">
+      <input type="search" placeholder="Search Here" id="searchInput">
+      <form onsubmit="pageJumped()" action="{% url 'BankApp:banktable' %}" method="get">
+        <input class="page" type="search" placeholder="page number" name="page">
+      </form>
+    </div>
+  </div>
+  <div class="table">
+    <table class="center">
+      <tr class="big-info">
+        <th>ID</th>
+        <th>IFSC</th>
+        <th>BANK ID</th>
+        <th>BRANCH</th>
+        <th>ADDRESS</th>
+        <th>CITY</th>
+        <th>DISTRICT</th>
+        <th>STATE</th>
+        <th>BANK NAME</th> <hr>
+      </tr>
+      <tbody id="mytable">
+      </tbody>
+    </table>
+   </div>
+
+<script>
+    function pageJumped() {
+      alert("You are jumping to page number " + $('.page').val());
+    }
+    var data = JSON.parse("{{data|escapejs}}");
+    buildTheTable(data)
+    function buildTheTable(data) {
+      var table = document.getElementById('mytable')
+      table.innerHTML = ''
+      for (var i = 0; i < data.length; i++){
+        var row = `<tr class="clickme">
+          <td id="me">${data[i].id}</td>
+          <td>${data[i].ifsc}</td>
+          <td>${data[i].bank_id}</td>
+          <td>${data[i].branch}</td>
+          <td>${data[i].address}</td>
+          <td>${data[i].city}</td>
+          <td>${data[i].district}</td>
+          <td>${data[i].state}</td>
+          <td>${data[i].bank_name}</td>
+          </tr> <hr>`
+        table.innerHTML += row
+
+      }
+   }
+
+
+    var lst = document.querySelectorAll('.clickme')
+
+    $('#searchInput').on('keyup', function(){
+        var value = $(this).val();
+        var newData = searchTable(value, data);
+        buildTheTable(newData)
+    })
+
+
+   for (var i=0; i<lst.length; i++){
+        lst[i].addEventListener("click", function() {
+          var val = $(this).find("#me").html()
+          callmeToSeeBankDetail(val);
+        })
+   }
+
+   function callmeToSeeBankDetail(val){
+      window.location = "{% url 'BankApp:detail' pk=1 %}".replace("1", val)
+   }
+
+
+  function searchTable(value, data){
+    var newData = []
+
+    for (var i = 0; i < data.length; i++){
+      value = value.toLowerCase()
+      var val1 = data[i].id.toString()
+      var val2 = data[i].ifsc.toString().toLowerCase()
+      var val3 = data[i].bank_id.toString()
+      var val4 = data[i].branch.toLowerCase()
+      var val5 = data[i].address.toLowerCase()
+      var val6 = data[i].city.toLowerCase()
+      var val7 = data[i].district.toLowerCase()
+      var val8 = data[i].state.toLowerCase()
+      var val9 = data[i].bank_name.toLowerCase()
+
+      if (val1.includes(value) || val2.includes(value) || val3.includes(value) || val4.includes(value) || val5.includes(value) || val6.includes(value) || val7.includes(value) || val8.includes(value) || val8.includes(value) ) {
+        newData.push(data[i])
+      }
+    }
+
+    return newData
+  }
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% include 'index.html' %}
+{% block context %}
+<div class="container headline">
+    <p>SEARCH THE BANK DETAILS HERE</p>
+    <div class="jumbotron">
+    <form  method="get">
+      <div class="decorate1">
+        <input type="search" placeholder="Search Here" name="q">
+        <input type="search" placeholder="limit" name="limit">
+        <input type="search" placeholder="offset" name="offset">
+      </div>
+     <div class="decorate2">
+      <button class="btn btn-info" type="submit">Search</button>
+     </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

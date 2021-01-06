@@ -1,0 +1,130 @@
+
+.headline{
+  font-family: 'Raleway', sans-serif;
+}
+.headline p{
+  font-size: 30px;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.decorate1{
+   display: flex;
+   justify-content: space-around;
+   font-size: 16px;
+   width: 100%;
+}
+.decorate1 input{
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-left: 15px;
+
+}
+.decorate2{
+  width: 100%;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 15px;
+
+}
+
+::placeholder{
+  text-align: center;
+  color:#94928d;
+}
+
+table{
+  margin-top: 10px;
+  width: 100%;
+}
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+ }
+
+.center td, tr, th{
+  font-size: 22px;
+
+}
+
+.jumbotron{
+  margin-top: 40px;
+  text-align: center;
+}
+
+ table td, tr, th{
+   font-size: 15px;
+   border: 2px solid #548791;
+   margin-left: 10px;
+   padding-right: 10px;
+ }
+
+.next{
+  width: 100px;
+}
+
+
+.bar{
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.dropdown .bar1{
+  width: 40%;
+}
+
+.bar1{
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.bar h6, .jumbotron h6{
+  margin-right: 10px;
+  color: #76ccc2;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+.bar1 input{
+  font-size: 15px;
+  border-bottom:3px solid #548791;
+  border-top: 1px solid #faf5f5;
+  border-left: 1px solid #faf5f5;
+  border-right: 1px solid #faf5f5;
+}
+
+.bar1 .page{
+  font-size: 18px;
+  height: 42px;
+  width: 150px;
+  margin-left: 20px;
+}
+
+.dropdown button{
+  font-size: 15px;
+  height: 35px;
+  width: 100px;
+  margin-right: 20px;
+}
+
+#searchInput{
+  font-size: 18px;
+  height: 42px;
+  width: 200px;
+}
+
+#searchInput:hover{
+  border-color: #157575;
+}
+
+.pagination{
+  padding:30px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+}

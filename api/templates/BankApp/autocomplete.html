@@ -1,0 +1,18 @@
+{% include 'index.html' %}
+{% block content %}
+<div class="container headline">
+  <p>SEARCH THE BANK DETAILS BY BRANCH NAME</p>
+  <div class="jumbotron">
+    <form action="{% url 'BankApp:branch' %}">
+      <div class="decorate1">
+        <input type="search" placeholder="search here" name="q" id="tags" >
+        <input type="search" placeholder="limit" name="limit">
+        <input type="search" placeholder="offset" name="offset">
+      </div>
+      <div class="decorate2">
+        <button class="btn btn-primary" type="submit" name="button">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
